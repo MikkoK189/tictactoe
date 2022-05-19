@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background-color: #134e4a;
+}
+
+.container {
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(min(1em, 100%), 1fr));
+  grid-template-rows: repeat(3, minmax(min(1em, 100%), 1fr));
+  background-color: #eab308;
+  border: 5px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px #0f766e;
+}
+
+.gameboard div {
+  min-height: 8em;
+  min-width: 8em;
+  background-color: #14b8a6;
+  border: 2px solid #5eead4;
+}
