@@ -127,4 +127,6 @@ const Game = (() => {
   return { startGame, clickedSquare, changeTurn };
 })();
 
+Game.startGame();
+
 restartButton.addEventListener("click", Game.startGame);
