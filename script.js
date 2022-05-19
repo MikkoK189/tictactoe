@@ -2,6 +2,8 @@ const grid = document.getElementById("grid");
 const restartButton = document.getElementById("restart");
 const winScreen = document.getElementById("winscreen");
 
+let ai = true;
+
 const GameBoard = (() => {
   const board = [];
 
@@ -34,6 +36,8 @@ const GameBoard = (() => {
   const setSquare = (clickedSquare) => {
     if (board.includes(clickedSquare)) {
       clickedSquare.textContent = currentPlayer.mark;
+
+      Game.checkForWin();
       Game.changeTurn();
     }
   };
@@ -68,9 +72,28 @@ const Game = (() => {
   };
 
   const changeTurn = () => {
-    checkForWin();
     if (currentPlayer == playerOne) {
       currentPlayer = playerTwo;
+      if (ai) {
+        if (
+          GameBoard.board.every((square) => {
+            if (square.textContent == "") {
+              return false;
+            }
+            return true;
+          })
+        ) {
+          return;
+        }
+        let randomSquare = GameBoard.board[Math.floor(Math.random() * 8)];
+
+        console.log(randomSquare);
+        while (randomSquare.textContent != "") {
+          randomSquare = GameBoard.board[Math.floor(Math.random() * 8)];
+        }
+
+        GameBoard.setSquare(randomSquare);
+      }
     } else {
       currentPlayer = playerOne;
     }
@@ -124,7 +147,7 @@ const Game = (() => {
     }
   };
 
-  return { startGame, clickedSquare, changeTurn };
+  return { startGame, clickedSquare, changeTurn, checkForWin };
 })();
 
 Game.startGame();
