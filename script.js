@@ -37,7 +37,9 @@ const GameBoard = (() => {
     if (board.includes(clickedSquare)) {
       clickedSquare.textContent = currentPlayer.mark;
 
-      Game.checkForWin();
+      if (Game.checkForWin() == true) {
+        return;
+      }
       Game.changeTurn();
     }
   };
@@ -132,6 +134,7 @@ const Game = (() => {
       document.getElementById(
         "congratulations"
       ).textContent = `${symbolToCheck} WINS`;
+      return true;
     } else {
       if (
         GameBoard.board.every((square) => {
@@ -143,7 +146,9 @@ const Game = (() => {
       ) {
         winScreen.style.display = "block";
         document.getElementById("congratulations").textContent = `TIE GAME`;
+        return true;
       }
+      return false;
     }
   };
 
